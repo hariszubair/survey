@@ -1,7 +1,14 @@
 <template>
-<PageComponent title="Dashboard">asdasd</PageComponent>
+  <PageComponent title="Dashboard">asdasd</PageComponent>
 </template>
 
-<script setup>
-import PageComponent from '../components/PageComponent.vue';
+
+<script>
+import PageComponent from "../components/PageComponent.vue";
+
+export default {
+  components: {
+    PageComponent: PageComponent,
+  },
+};
 </script>

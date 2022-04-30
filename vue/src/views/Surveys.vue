@@ -1,8 +1,16 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <PageComponent title="Surveys">aaaaaa</PageComponent>
+  <PageComponent title="Surveys">aaaasssaa</PageComponent>
 </template>
 
-<script setup>
-import PageComponent from "../components/PageComponent.vue"
+
+
+<script>
+import PageComponent from "../components/PageComponent.vue";
+
+export default {
+  components: {
+    PageComponent: PageComponent,
+  },
+};
 </script>

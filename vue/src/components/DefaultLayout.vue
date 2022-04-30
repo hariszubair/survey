@@ -33,14 +33,13 @@
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'px-3 py-2 rounded-md text-sm font-medium',
                   ]"
-                  >{{ item.name }}</router-link>
+                  >{{ item.name }}</router-link
+                >
               </div>
             </div>
           </div>
           <div class="hidden md:block">
             <div class="ml-4 flex items-center md:ml-6">
-              
-
               <!-- Profile dropdown -->
               <Menu as="div" class="ml-3 relative">
                 <div>
@@ -90,12 +89,10 @@
                       focus:outline-none
                     "
                   >
-                    <MenuItem
-                    >
+                    <MenuItem>
                       <a
-                       @click="logout"
+                        @click="logout"
                         :class="[
-                          active ? 'bg-gray-100' : '',
                           'block px-4 py-2 text-sm text-gray-700 cursor-pointer',
                         ]"
                         >Sign out</a
@@ -145,8 +142,8 @@
                 : 'text-gray-300 hover:bg-gray-700 hover:text-white',
               'block px-3 py-2 rounded-md text-base font-medium',
             ]"
-            
-            >{{ item.name }}</router-link>
+            >{{ item.name }}</router-link
+          >
         </div>
         <div class="pt-4 pb-3 border-t border-gray-700">
           <div class="flex items-center px-5">
@@ -161,7 +158,6 @@
                 {{ user.email }}
               </div>
             </div>
-        
           </div>
           <div class="mt-3 px-2 space-y-1">
             <DisclosureButton
@@ -175,7 +171,7 @@
                 font-medium
                 text-gray-400
                 hover:text-white hover:bg-gray-700
-                 cursor-pointer
+                cursor-pointer
               "
               >Sign out</DisclosureButton
             >
@@ -198,15 +194,13 @@ import {
   MenuItems,
 } from "@headlessui/vue";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
-import {useStore} from 'vuex';
-import { computed } from '@vue/runtime-core';
-import {useRouter} from  'vue-router'
+import { useRouter } from "vue-router";
 const navigation = [
-  { name: "Dashboard", to:{name:"Dashboard"} },
-  { name: "surveys", to:{name:"Surveys"} },
- 
+  { name: "Dashboard", to: { name: "Dashboard" } },
+  { name: "surveys", to: { name: "Surveys" } },
 ];
-
+import router from "../router";
+import store from "../store";
 export default {
   components: {
     Disclosure,
@@ -220,20 +214,26 @@ export default {
     MenuIcon,
     XIcon,
   },
-  setup() {
-    const router = useRouter()
-    const store= useStore();
+  // setup() {
 
-    function logout(){
-      store.commit('logout')
-      router.push({name:'Login'});
-    }
-
+  methods: {
+    logout() {
+      store.dispatch("logout").then(() => {
+        router.push({ name: "Login" });
+      });
+    },
+  },
+  data() {
     return {
-      user: computed(()=>store.state.user.data),
+      user: store.state.user.data,
       navigation,
-      logout
     };
   },
+  // return {
+  //   user: computed(()=>store.state.user.data),
+  //   navigation,
+  //   logout
+  // };
+  // },
 };
 </script>
